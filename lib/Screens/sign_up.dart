@@ -29,26 +29,27 @@ class _sign_upState extends State<sign_up> {
     authbloc = BlocProvider.of<AuthBloc>(context);
     super.initState();
   }
-  final msgError = BlocBuilder<AuthBloc , AuthState>(
-    builder: (context, state){
-      if (state is LoginErrorState)
-        {
-         return Container(
-           height: 50,
-           child: Text(
-               state.msg,
-              style: TextStyle(
-                  color: Colors.red),
-            ),
-         );
-        }
-      else if (state is loginLodingState) {
+
+  final msgError = BlocBuilder<AuthBloc, AuthState>(
+    builder: (context, state) {
+      if (state is LoginErrorState) {
+        return Container(
+          height: 50,
+          child: Text(
+            state.msg,
+            style: TextStyle(color: Colors.red),
+          ),
+        );
+      } else if (state is loginLodingState) {
         return Container(
             height: 50,
-            child: Center(child: CircularProgressIndicator(),));
-      }
-      else {
-        return Container( height: 30,);
+            child: Center(
+              child: CircularProgressIndicator(),
+            ));
+      } else {
+        return Container(
+          height: 30,
+        );
       }
     },
   );
@@ -60,124 +61,127 @@ class _sign_upState extends State<sign_up> {
         body: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is DoctorLoginSuccState) {
-              return Navigator.pushNamed(context, 'LoginSuccessScreen');
-            }
-            else if (state is NurseLoginSuccState){
-              return null ;
-                // Navigator.pushNamed(context, 'LoginSuccessScreen');
+              return Navigator.pushNamed(context, 'taskScreen');
+            } else if (state is NurseLoginSuccState) {
+              return null;
             }
           },
-          child: Container(
-                  height: MediaQuery.of(context).size.height ,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/background3.jpg'),
-                          fit: BoxFit.fill)),
-                  child: Stack(
-                    children: <Widget>[
-                      Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: SingleChildScrollView(
+            //scrollDirection: Axis.horizontal,
+            child :Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/background3.jpg'),
+                    fit: BoxFit.fill)),
+            child: Stack(
+              children: <Widget>[
+                Column(
+                  //mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-
-                      Positioned(
-                        child: FadeAnimation(
-                            1,
-                            Container(
-                              height:MediaQuery.of(context).size.height*0.3 ,
-                              margin: EdgeInsets.only(top: 50),
-                              child: Center(
-                                child: Text(
-                                  "LOGIN",
-                                  style: TextStyle(
-                                      color: Colors.blue[200],
-                                      fontSize: 40,
-                                      fontWeight: FontWeight.bold),
+                    Positioned(
+                      child: FadeAnimation(
+                          1,
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            margin: EdgeInsets.only(top: 50),
+                            child: Center(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                    color: Colors.blue[200],
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          )),
+                    ),
+                    Positioned(
+                      child: FadeAnimation(
+                          1.3,
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.2,
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.blue[100],
+                                      blurRadius: 20.0,
+                                      offset: Offset(0, 10))
+                                ]),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              color: Colors.grey[100]))),
+                                  child: TextField(
+                                    controller: usernameControll,
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: "User name",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey[400])),
+                                  ),
                                 ),
-                              ),
-                            )),
-                      ),
-                      Positioned(
-                  child: FadeAnimation(
-                            1.3,
-                            Container(
-                                height: MediaQuery.of(context).size.height*0.2,
-                              width: MediaQuery.of(context).size.width*0.85,
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.blue[100],
-                                        blurRadius: 20.0,
-                                        offset: Offset(0, 10))
-                                  ]),
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: Colors.grey[100]))),
-                                    child: TextField(
-                                      controller: usernameControll,
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "User name",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey[400])),
-                                    ),
+                                Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    controller: passcontroll,
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: "Password",
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey[400])),
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: TextField(
-                                      controller: passcontroll,
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "Password",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey[400])),
-                                    ),
-                                  ),
-
-                                ],
-                              ),
-                            )),),
-                        //SizedBox(
-                          //height: 30,
-                        //),
-                        FadeAnimation(
-                            1.5,
-                            msgError,
-                        ),
-                        FadeAnimation(
-                            1.8,
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: GestureDetector(
-                                //width: MediaQuery.of(context).size.width*0.85,
-                                  child :gradient_button("login"),
-                                onTap: () {
-                                  authbloc.add(loginButtonPessed(
-                                      username: usernameControll.text,
-                                      password: passcontroll.text));
-                                  // Navigator.pushNamed(context, 'LoginSuccessScreen');
-                                },
-                              ),
-                            )),
-                        SizedBox(
-                          height: 70,
-                        ),
-                        FadeAnimation(
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
+                    //SizedBox(
+                    //height: 30,
+                    //),
+                    FadeAnimation(
+                      1.5,
+                      msgError,
+                    ),
+                    FadeAnimation(
+                        1.8,
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: GestureDetector(
+                            //width: MediaQuery.of(context).size.width*0.85,
+                            child: gradient_button("login"),
+                            onTap: () {
+                              authbloc.add(loginButtonPessed(
+                                  username: usernameControll.text,
+                                  password: passcontroll.text));
+                              // Navigator.pushNamed(context, 'LoginSuccessScreen');
+                            },
+                          ),
+                        )),
+                    SizedBox(
+                      height: 70,
+                    ),
+                    FadeAnimation(
                         2,
-                            Text(
-                              "Forgot Password?",
-                              style: TextStyle(
-                                  color: Colors.blue[200]),
-                            )),
+                        Text(
+                          "Forgot Password?",
+                          style: TextStyle(color: Colors.blue[200]),
+                        )),
+                  ],
+                ),
               ],
-          ),],),),) ,);
-
+            ),
+            ),
+          ),
+        ),
+    );
   }
 }

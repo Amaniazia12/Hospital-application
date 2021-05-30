@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/login_api.dart';
 import 'package:hospital_application/Screens/LoginSuccessScreen.dart';
 import 'package:hospital_application/Screens/Slider_screen.dart';
+import 'package:hospital_application/Screens/Tasks_screen.dart';
 import 'package:hospital_application/Screens/sign_up.dart';
 import 'package:hospital_application/blocs/auth_bloc.dart';
 import 'package:hospital_application/blocs/auth_state.dart';
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{
               slider.routName: (ctx) => slider(),
+              taskScreen.routName: (ctx) => taskScreen(),
               LoginSuccessScreen.routName: (ctx) => LoginSuccessScreen(),
               sign_up.routName: (ctx) => sign_up(),
             }));
