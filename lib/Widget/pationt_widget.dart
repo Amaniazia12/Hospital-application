@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import '../Screens/pationtProfile_screen.dart';
-import '../Models/pationtClass.dart';
+import '../Screens/patientProfile_screen.dart';
+import '../Models/patientClass.dart';
 
 class pationtItem extends StatelessWidget {
 
-  final String id ;
+  final int id ;
   final String image ; 
-  final String check_in;
-  final String check_out;
+  final DateTime check_in;
+  final DateTime check_out;
   final String gender;
-  final String age;
-  final String mobel;
+  final int age;
+  final int mobel;
   final String nationality;
-  final String user;
-  final String stay_room;
+  final int user;
+  final int stay_room;
   final String name;
-  final List <String> acessed_tasks;
+  final List <int> acessed_tasks;
   final String doctorId;
+  final Future<List<Patient>> allPatient ;
 
    pationtItem({
     @required this.id,
@@ -32,11 +33,15 @@ class pationtItem extends StatelessWidget {
     @required this.acessed_tasks,
     @required this.name,
     @required this.doctorId,
+    @required this.allPatient,
   });
 void selectedPation(BuildContext ctx){
    Navigator.of(ctx).pushNamed(
      PationtProfile_screen.routeName ,
-     arguments: id,
+     arguments:  {
+       id, 
+       allPatient
+       }
     
    );
  }
@@ -92,8 +97,8 @@ void selectedPation(BuildContext ctx){
                    _text("", Colors.white , 18, name),
                    SizedBox(height: 25,),
                    _text("From", Colors.grey[400], 12, nationality),
-                   _text("Check in", Colors.grey[400], 12, check_in),
-                   _text("Check out ", Colors.grey[400], 12, check_out),
+                   _text("Check in", Colors.grey[400], 12, check_in.toString()),
+                   _text("Check out ", Colors.grey[400], 12, check_out.toString()),
                    SizedBox(height: 2,),
                    
                  ],

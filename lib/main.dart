@@ -8,7 +8,9 @@ import 'package:hospital_application/Screens/Tasks_screen.dart';
 import 'package:hospital_application/Screens/sign_up.dart';
 import 'package:hospital_application/blocs/auth_bloc.dart';
 import 'package:hospital_application/blocs/auth_state.dart';
-
+import 'Screens/patientProfile_screen.dart';
+import 'Screens/patients_screen.dart';
+import 'Screens/doctor_Screen.dart';
 void main() {
   runApp(MyApp());
 }
@@ -21,7 +23,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    //TODO: implement initState
+    
     super.initState();
   }
 
@@ -32,23 +34,16 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) => AuthBloc(loginInitState(), Login_Api()))
         ],
+        
         child: MaterialApp(
-          /**
-            home: Container(
-                child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/background44.jpg'),
-                          fit: BoxFit.fill)),
+                theme: ThemeData(
+                  primaryColor: Colors.indigo[400],
+                  accentColor: Colors.indigo[100],
                 ),
-    **/
                 home:AnimatedSplashScreen(
                   splash: ('assets/images/robpng.png'),
                   backgroundColor: Colors.blue[200],
-                  nextScreen: slider(),
+                  nextScreen: Doctor_Screen(),
                 ),
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{
@@ -56,6 +51,8 @@ class _MyAppState extends State<MyApp> {
               taskScreen.routName: (ctx) => taskScreen(),
               LoginSuccessScreen.routName: (ctx) => LoginSuccessScreen(),
               sign_up.routName: (ctx) => sign_up(),
+              PationtScreen.routName:(ctx)=>PationtScreen(),
+              PationtProfile_screen.routeName:(ctx)=>PationtProfile_screen(),
             }));
   }
 }

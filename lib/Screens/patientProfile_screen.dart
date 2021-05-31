@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task1/Models/dummyData.dart';
+import '../Models/dummyData.dart';
 
 class PationtProfile_screen extends StatelessWidget {
  static const routeName ='/pationtProfile';
@@ -33,8 +33,10 @@ class PationtProfile_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final patientId = ModalRoute.of(context).settings.arguments as String ;
-    final patient =DummyDataOfPationt.firstWhere((patient) => patient.id == patientId);
+    final args = ModalRoute.of(context).settings.arguments as dynamic ;
+    final patientId=args[0];
+    final allPatients = args[1];
+    final patient =allPatients.firstWhere((patient) => patient.id == patientId);
     
     return Scaffold(
       appBar: AppBar(title:Text("Patient Profile ",style: TextStyle (color: Colors.white))),
@@ -52,7 +54,6 @@ class PationtProfile_screen extends StatelessWidget {
               decoration:BoxDecoration( borderRadius:BorderRadius.only( topRight: Radius.circular(50.0),topLeft: Radius.circular(50.0),), color: Colors.white,  ),),  
             Center(
               child: Container(
-                //color: Colors.pink,
                 height:MediaQuery.of(context).size.height*0.25,
                 width:MediaQuery.of(context).size.height*0.25,
                 child: CircleAvatar(
@@ -73,18 +74,16 @@ class PationtProfile_screen extends StatelessWidget {
             ),
           ),
            _infoCol("Nationality", patient.nationality),
-           _infoCol("Stay_room", patient.stay_room),
-           _infoCol("Check in", patient.check_in),
-           _infoCol("Check out", patient.check_out),
-           _infoCol("Age", patient.age),
-           _infoCol("Mobile", patient.mobel),
-           _infoCol("User", patient.user),
-           //for (int i = 0 ; i < patient.acessed_tasks.length;i++)
-             //_infoCol("Acessed task"+ '${i}' , patient.nationality[i]),
+           _infoCol("Stay_room  ", patient.stay_room),
+           _infoCol("Check in   ", patient.check_in),
+           _infoCol("Check out  ", patient.check_out),
+           _infoCol("Age        ", patient.age),
+           _infoCol("Mobile     ", patient.mobel),
+           _infoCol("User       ", patient.user),
            _btn("History", (){}),
            Container(
              height: 10,
-              width: MediaQuery.of(context).size.width ,
+             width: MediaQuery.of(context).size.width ,
              color: Colors.white,
              child: SizedBox(height: 10,)),
            _btn("Acessed task", (){}),

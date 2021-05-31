@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 import 'doctorClass.dart';
-import 'pationtClass.dart';
+import 'patientClass.dart';
 
-const DummyDataOfDoctor=const [
+ DummyDataOfDoctor= [
 
 Doctor(
   id: '1',
@@ -44,8 +44,8 @@ Doctor(
   ]
   ),
 ];
-const DummyDataOfPationt = const [
-  Pationt(
+ DummyDataOfPatient =  [
+  Patient(
     id: "1",
     name: "Hana Ali Ahmed",
     image: "assets/images/11.jpg",
@@ -64,7 +64,7 @@ const DummyDataOfPationt = const [
     "task4Id",],
     doctorId: "1"
     ),
-     Pationt(
+     Patient(
     id: "2",
     name: "Mohamed Ali Ahmed",
     image: "assets/images/1.jpg",
@@ -82,7 +82,7 @@ const DummyDataOfPationt = const [
     "task3Id",
     "task4Id",
     ],doctorId: "1"),
-     Pationt(
+     Patient(
     id: "3",
     name: "Ahmed Ali Ahmed",
     image: "assets/images/2.jpg",
@@ -101,7 +101,7 @@ const DummyDataOfPationt = const [
     "task4Id",
     ],
     doctorId: "1"),
-Pationt(
+Patient(
     id: "4",
     name: "Hana Ali Ahmed",
     image: "assets/images/11.jpg",
@@ -120,7 +120,7 @@ Pationt(
     "task4Id",
     ],
     doctorId: "2"),
-     Pationt(
+     Patient(
     id: "5",
     name: "Mohamed Ali Ahmed",
 image: "assets/images/1.jpg",
@@ -139,7 +139,7 @@ image: "assets/images/1.jpg",
     "task4Id",
     ],
     doctorId: "2"),
-     Pationt(
+     Patient(
     id: "6",
     name: "Ahmed Ali Ahmed",
     image: "assets/images/2.jpg",
@@ -160,7 +160,7 @@ image: "assets/images/1.jpg",
     doctorId: "2"),
 
 
-    Pationt(
+    Patient(
     id: "7",
     name: "Hana Ali Ahmed",
     image: "assets/images/11.jpg",
@@ -179,7 +179,7 @@ image: "assets/images/1.jpg",
     "task4Id",],
     doctorId: "3"
     ),
-     Pationt(
+     Patient(
     id: "8",
     name: "Mohamed Ali Ahmed",
 image: "assets/images/3.jpg",
@@ -197,7 +197,7 @@ image: "assets/images/3.jpg",
     "task3Id",
     "task4Id",
     ],doctorId: "3"),
-     Pationt(
+     Patient(
     id: "9",
     name: "Ahmed Ali Ahmed",
     image: "assets/images/2.jpg",
@@ -216,7 +216,7 @@ image: "assets/images/3.jpg",
     "task4Id",
     ],
     doctorId: "3"),
-Pationt(
+Patient(
     id: "10",
     name: "Hana Ali Ahmed",
     image: "assets/images/11.jpg",
@@ -235,7 +235,7 @@ Pationt(
     "task4Id",
     ],
     doctorId: "3"),
-     Pationt(
+     Patient(
     id: "11",
     name: "Mohamed Ali Ahmed",
 image: "assets/images/3.jpg",
@@ -254,7 +254,7 @@ image: "assets/images/3.jpg",
     "task4Id",
     ],
     doctorId: "3"),
-     Pationt(
+     Patient(
     id: "12",
     name: "Ahmed Ali Ahmed",
 image: "assets/images/2.jpg",
@@ -274,7 +274,7 @@ image: "assets/images/2.jpg",
     ],
     doctorId: "3"),
 
-     Pationt(
+     Patient(
     id: "13",
     name: "Ahmed Ali Ahmed",
 image: "assets/images/2.jpg",
@@ -293,7 +293,7 @@ image: "assets/images/2.jpg",
     "task4Id",
     ],
     doctorId: "1"),
-Pationt(
+Patient(
     id: "14",
     name: "Hana Ali Ahmed",
 image: "assets/images/1.jpg",
@@ -312,7 +312,7 @@ image: "assets/images/1.jpg",
     "task4Id",
     ],
     doctorId: "1"),
-     Pationt(
+     Patient(
     id: "15",
     name: "Mohamed Ali Ahmed",
 image: "assets/images/3.jpg",
@@ -331,7 +331,7 @@ image: "assets/images/3.jpg",
     "task4Id",
     ],
     doctorId: "2"),
-     Pationt(
+     Patient(
     id: "16",
     name: "Ahmed Ali Ahmed",
     image: "assets/images/2.jpg",
@@ -350,4 +350,4 @@ image: "assets/images/3.jpg",
     "task4Id",
     ],
     doctorId: "3"),
-];
+];*/

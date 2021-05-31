@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../Models/doctorClass.dart';
 import '../Models/dummyData.dart';
 import '../screens/categories_Screen.dart';
-import './pationts_screen.dart';
+import 'patients_screen.dart';
 class Doctor_Screen extends StatelessWidget {
    final idcontroller = TextEditingController();
    String doctorId;

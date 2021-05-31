@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class Doctor{
 
-  final String id ;
-  final String name;
-  final String image;
-  final String user;
-  final String department;
-  final List <String >acessed_taskesg;
+   String id ;
+   String name;
+   String image;
+   String user;
+   String department;
+   List <String >acessed_taskesg;
 
 
-  const Doctor({
+   Doctor({
     @required this.id,
     @required this.name,
     @required this.image,
