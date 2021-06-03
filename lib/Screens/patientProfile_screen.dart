@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
-import '../Models/dummyData.dart';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:hospital_application/Models/patientClass.dart';
+import 'package:hospital_application/Screens/reports_Screen.dart';
+import '../Models/dummyData.dart';
+import './categoriesOFTasks_Screen.dart';
 class PationtProfile_screen extends StatelessWidget {
  static const routeName ='/pationtProfile';
 
@@ -17,6 +21,7 @@ class PationtProfile_screen extends StatelessWidget {
     );
 
   }
+  
   Widget _btn( String title , Function fun ){
     return Container(
                 color: Colors.white,
@@ -30,14 +35,31 @@ class PationtProfile_screen extends StatelessWidget {
                 ),
               );
   }
+ 
+ void _addTaskFunction (BuildContext ctx){
+   Navigator.of(ctx).pushNamed(
+     CategoriesOfTask.routName,
+     arguments:  {
+       
+       }
+    
+   );
+ }
+ void _report (BuildContext ctx ){
+   Navigator.of(ctx).pushNamed(
+     Report_screen.routeName,
+     arguments:  {
+        
+       }
+    
+   );
+ }
+
   @override
   Widget build(BuildContext context) {
 
-    final args = ModalRoute.of(context).settings.arguments as dynamic ;
-    final patientId=args[0];
-    final allPatients = args[1];
-    final patient =allPatients.firstWhere((patient) => patient.id == patientId);
-    
+    final patient = ModalRoute.of(context).settings.arguments as Patient ;
+   
     return Scaffold(
       appBar: AppBar(title:Text("Patient Profile ",style: TextStyle (color: Colors.white))),
       backgroundColor: Theme.of(context).primaryColor,
@@ -74,19 +96,26 @@ class PationtProfile_screen extends StatelessWidget {
             ),
           ),
            _infoCol("Nationality", patient.nationality),
-           _infoCol("Stay_room  ", patient.stay_room),
-           _infoCol("Check in   ", patient.check_in),
-           _infoCol("Check out  ", patient.check_out),
-           _infoCol("Age        ", patient.age),
-           _infoCol("Mobile     ", patient.mobel),
+           _infoCol("Stay_room  ", patient.stay_room.toString()),
+           _infoCol("Check in   ", patient.check_in.toString()),
+           _infoCol("Check out  ", patient.check_out.toString()),
+           _infoCol("Age        ", patient.age.toString()),
+           _infoCol("Mobile     ", patient.mobel.toString()),
            _infoCol("User       ", patient.user),
-           _btn("History", (){}),
+           _btn("Add Task", _addTaskFunction),
            Container(
              height: 10,
              width: MediaQuery.of(context).size.width ,
              color: Colors.white,
              child: SizedBox(height: 10,)),
-           _btn("Acessed task", (){}),
+           _btn("History", (){}),
+         /*  _btn("Reports", Navigator.of(ctx).pushNamed(
+                          Report_screen.routeName,
+                          arguments:  {
+        patient
+                           }
+    
+                           );),*/
           ]
         )
       )

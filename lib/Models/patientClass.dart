@@ -16,7 +16,7 @@ class Patient{
    String name;
    List <int> acessed_tasks;
    String doctorId;
-
+   
   Patient({
     @required this.id,
     @required this.image,

@@ -4,45 +4,16 @@ import '../Models/patientClass.dart';
 
 class pationtItem extends StatelessWidget {
 
-  final int id ;
-  final String image ; 
-  final DateTime check_in;
-  final DateTime check_out;
-  final String gender;
-  final int age;
-  final int mobel;
-  final String nationality;
-  final int user;
-  final int stay_room;
-  final String name;
-  final List <int> acessed_tasks;
-  final String doctorId;
-  final Future<List<Patient>> allPatient ;
-
+  Patient patient ;
    pationtItem({
-    @required this.id,
-    @required this.image,
-    @required this.check_in,
-    @required this.check_out,
-    @required this.gender,
-    @required this.age,
-    @required this.mobel,
-    @required this.nationality,
-    @required this.user,
-    @required this.stay_room,
-    @required this.acessed_tasks,
-    @required this.name,
-    @required this.doctorId,
-    @required this.allPatient,
+   this.patient
   });
 void selectedPation(BuildContext ctx){
    Navigator.of(ctx).pushNamed(
      PationtProfile_screen.routeName ,
-     arguments:  {
-       id, 
-       allPatient
+     arguments:{
+       patient
        }
-    
    );
  }
  Widget _text(String title , Color color , double fontSize , String value  ){
@@ -88,19 +59,18 @@ void selectedPation(BuildContext ctx){
                  width: MediaQuery.of(context).size.width*0.3,
                  child: CircleAvatar(
                     radius: 10,
-                    backgroundImage: AssetImage(image),
+                    backgroundImage: AssetImage(patient.image),
                  ),
                ),
                SizedBox(width: 10,),
                Column(
                  children: [
-                   _text("", Colors.white , 18, name),
+                   _text("", Colors.white , 18, patient.name),
                    SizedBox(height: 25,),
-                   _text("From", Colors.grey[400], 12, nationality),
-                   _text("Check in", Colors.grey[400], 12, check_in.toString()),
-                   _text("Check out ", Colors.grey[400], 12, check_out.toString()),
+                   _text("From", Colors.grey[400], 12,patient.nationality),
+                   _text("Check in", Colors.grey[400], 12,patient.check_in.toString()),
+                   _text("Check out ", Colors.grey[400], 12,patient.check_out.toString()),
                    SizedBox(height: 2,),
-                   
                  ],
                )
             ],)

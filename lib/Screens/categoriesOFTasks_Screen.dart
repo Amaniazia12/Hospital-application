@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-class Pationt_Screen extends StatelessWidget {
+class CategoriesOfTask extends StatelessWidget {
+  static const routName = "/ categioryOfTasks";
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
