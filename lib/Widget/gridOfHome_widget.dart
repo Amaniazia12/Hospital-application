@@ -7,17 +7,11 @@ class GridDashboard extends StatelessWidget {
   //--------------------------------------------------------------------------
   void selectCategory(BuildContext context,int action)
   {
-    if(action==1)
-    {
+    if(action==1) {
+      Navigator.pushNamed(context, 'taskScreen');
+      //Navigator.of(context).pushNamed(
+      //  taskScreen.routName,
 
-   Navigator.of(context).pushNamed(
-     PationtScreen.routName,
-     arguments:  {
-       //id, doctor 
-       //allPatient
-       }
-    
-   );
  
     }
     if(action==2) {

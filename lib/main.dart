@@ -11,7 +11,7 @@ import 'package:hospital_application/blocs/auth_bloc.dart';
 import 'package:hospital_application/blocs/auth_state.dart';
 import 'Screens/patientProfile_screen.dart';
 import 'Screens/patients_screen.dart';
-import 'Screens/doctor_Screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -24,7 +24,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    
     super.initState();
   }
 
@@ -35,26 +34,25 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
               create: (context) => AuthBloc(loginInitState(), Login_Api()))
         ],
-        
         child: MaterialApp(
-                theme: ThemeData(
-                  primaryColor: Colors.blue[300],
-                  accentColor: Colors.blue[200],
-                ),
-                home:AnimatedSplashScreen(
-                  splash: ('assets/images/robpng.png'),
-                  backgroundColor: Colors.blue[200],
-                  nextScreen:  Home_screen(),
-                ),
+            theme: ThemeData(
+              primaryColor: Colors.blue[300],
+              accentColor: Colors.blue[200],
+            ),
+            home: AnimatedSplashScreen(
+              splash: ('assets/images/robpng.png'),
+              backgroundColor: Colors.blue[200],
+              nextScreen: taskScreen(),
+            ),
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{
               slider.routName: (ctx) => slider(),
               taskScreen.routName: (ctx) => taskScreen(),
               LoginSuccessScreen.routName: (ctx) => LoginSuccessScreen(),
               sign_up.routName: (ctx) => sign_up(),
-              PationtScreen.routName:(ctx)=>PationtScreen(),
-              PationtProfile_screen.routeName:(ctx)=>PationtProfile_screen(),
-              Home_screen.routName:(ctx) => Home_screen(),
+              PationtScreen.routName: (ctx) => PationtScreen(),
+              PationtProfile_screen.routeName: (ctx) => PationtProfile_screen(),
+              Home_screen.routName: (ctx) => Home_screen(),
             }));
   }
 }
