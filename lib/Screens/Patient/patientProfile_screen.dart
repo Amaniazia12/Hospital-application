@@ -2,9 +2,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_application/Models/patientClass.dart';
-import 'package:hospital_application/Screens/reports_Screen.dart';
-import '../Models/dummyData.dart';
-import './categoriesOFTasks_Screen.dart';
+import 'package:hospital_application/Screens/Patient/reports_Screen.dart';
+import '../../Models/dummyData.dart';
+import '../categoriesOFTasks_Screen.dart';
 class PationtProfile_screen extends StatelessWidget {
  static const routeName ='/pationtProfile';
 
@@ -22,8 +22,10 @@ class PationtProfile_screen extends StatelessWidget {
 
   }
   
-  Widget _btn( String title , Function fun ){
-    return Container(
+  Widget _btn( String title , Function fun  , BuildContext context){
+    return Column(
+      children: <Widget>[
+         Container(
                 color: Colors.white,
                 width: double.infinity,
                 child:FlatButton(
@@ -33,18 +35,19 @@ class PationtProfile_screen extends StatelessWidget {
                   height: 50,
                   child: Text(title,style: TextStyle(color: Colors.white,fontSize: 20.0),),
                 ),
-              );
+              ),
+        Container( height: 10,  width: MediaQuery.of(context).size.width ,  color: Colors.white, child: SizedBox(height: 10,)),
+      ],
+    );
+   
   }
  
  void _addTaskFunction (BuildContext ctx){
    Navigator.of(ctx).pushNamed(
      CategoriesOfTask.routName,
-     arguments:  {
-       
-       }
-    
    );
  }
+ 
  void _report (BuildContext ctx ){
    Navigator.of(ctx).pushNamed(
      Report_screen.routeName,
@@ -54,6 +57,8 @@ class PationtProfile_screen extends StatelessWidget {
     
    );
  }
+ 
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +93,7 @@ class PationtProfile_screen extends StatelessWidget {
             width: MediaQuery.of(context).size.width ,
             padding: EdgeInsets.all(10),
             child: Center(
-              child: Text(patient.name , style: TextStyle(
+              child: Text("Patient " , style: TextStyle(
                        fontSize: 24 ,
                        fontWeight: FontWeight.w500,
                        color: Colors.black87,
@@ -100,22 +105,11 @@ class PationtProfile_screen extends StatelessWidget {
            _infoCol("Check in   ", patient.check_in.toString()),
            _infoCol("Check out  ", patient.check_out.toString()),
            _infoCol("Age        ", patient.age.toString()),
-           _infoCol("Mobile     ", patient.mobel.toString()),
-           _infoCol("User       ", patient.user),
-           _btn("Add Task", _addTaskFunction),
-           Container(
-             height: 10,
-             width: MediaQuery.of(context).size.width ,
-             color: Colors.white,
-             child: SizedBox(height: 10,)),
-           _btn("History", (){}),
-         /*  _btn("Reports", Navigator.of(ctx).pushNamed(
-                          Report_screen.routeName,
-                          arguments:  {
-        patient
-                           }
-    
-                           );),*/
+           _infoCol("Mobile     ", patient.mobile.toString()),
+           _infoCol("User       ", patient.user.toString()),
+           _btn("Add Task", _addTaskFunction , context),
+           _btn("History", (){} , context),
+           _btn("Reports", (){} , context),
           ]
         )
       )

@@ -1,35 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_application/API/task_api.dart';
+import 'package:hospital_application/Models/Task_Model.dart';
 
 import '../API/task_api.dart';
 
 class taskScreen extends StatefulWidget {
-  const taskScreen({Key key}) : super(key: key);
   static String routName = 'taskScreen';
+  String idCategory ;
+  taskScreen({this.idCategory});
+  
+  
   @override
   _taskScreenState createState() => _taskScreenState();
 }
 
+ 
 class _taskScreenState extends State<taskScreen> {
+  List<Task> getTaskall (){
+       FutureBuilder(
+           future: getTask(),
+            builder: (BuildContext context, AsyncSnapshot snapshot){
+              if (snapshot.data == null) 
+                return null;
+              else 
+                return snapshot.data;
+                }
+           );
+   } 
+  var allTaskscateg;
+  @override 
+  void initState() {
+    
+    super.initState();
+    allTaskscateg= getTaskall();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   String idCategory = ModalRoute.of(context).settings.arguments as String ;
+   final categoryTasks= allTaskscateg.where((task){
+      return task.type = idCategory ;
+    } ).toList();   
+    
+     return Scaffold(
       appBar: AppBar(
         title: Text("Tasks"),
         centerTitle: true,
         backgroundColor: Colors.blue[200],
       ),
       body: Container(
-        child: FutureBuilder(
-            future: getTask(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.data == null) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
+        child:ListView.builder(
+                  itemCount: categoryTasks.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
                       child: Container(
@@ -46,18 +67,16 @@ class _taskScreenState extends State<taskScreen> {
                             ]),
                         child: GestureDetector(
                           //width: MediaQuery.of(context).size.width*0.85,
-                          child: Text(snapshot.data[index].name,),
+                          child: Text(categoryTasks.data[index].name,),
                           onTap: () {
                             // Navigator.pushNamed(context, 'LoginSuccessScreen');
                           },
                         ),
                       ),
                     );
-                  },
-                );
-              }
-            }),
+                  }
       ),
+     )
     );
   }
 }

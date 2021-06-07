@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../Widget/pationt_widget.dart';
+import '../../Widget/pationt_widget.dart';
 import 'dart:io';
-import '../Models/patientClass.dart';
+import '../../Models/patientClass.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../API/patient_api.dart';
+import '../../API/patient_api.dart';
 
 
 class PationtScreen extends StatelessWidget {

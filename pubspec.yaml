@@ -32,10 +32,10 @@ dependencies:
   simple_animations: ^1.3.3
   http:
   flutter_bloc :
-    #save data in mobile small data base
   shared_preferences:
   equatable:
   google_fonts: ^2.1.0
+  control_pad: ^1.1.1+1
 
 dev_dependencies:
   flutter_test:

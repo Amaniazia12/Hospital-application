@@ -162,7 +162,7 @@ class _sign_upState extends State<sign_up> {
                               authbloc.add(loginButtonPessed(
                                   username: usernameControll.text,
                                   password: passcontroll.text));
-                              // Navigator.pushNamed(context, 'LoginSuccessScreen');
+                               Navigator.pushNamed(context, '/Home_Screen');
                             },
                           ),
                         )),

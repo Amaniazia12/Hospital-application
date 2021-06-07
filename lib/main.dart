@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/login_api.dart';
+import 'package:hospital_application/Screens/Controls/Joystick_screen.dart';
 import 'package:hospital_application/Screens/LoginSuccessScreen.dart';
 import 'package:hospital_application/Screens/Slider_screen.dart';
 import 'package:hospital_application/Screens/Tasks_screen.dart';
@@ -9,9 +10,9 @@ import './Screens/home-screen.dart';
 import 'package:hospital_application/Screens/sign_up.dart';
 import 'package:hospital_application/blocs/auth_bloc.dart';
 import 'package:hospital_application/blocs/auth_state.dart';
-import 'Screens/patientProfile_screen.dart';
-import 'Screens/patients_screen.dart';
-import 'Screens/doctor_Screen.dart';
+import 'Screens/Patient/patientProfile_screen.dart';
+import 'Screens/Patient/patients_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -38,13 +39,13 @@ class _MyAppState extends State<MyApp> {
         
         child: MaterialApp(
                 theme: ThemeData(
-                  primaryColor: Colors.blue[300],
-                  accentColor: Colors.blue[200],
+                  primaryColor: Colors.blue[200],
+                  accentColor: Colors.blue[100],
                 ),
                 home:AnimatedSplashScreen(
                   splash: ('assets/images/robpng.png'),
                   backgroundColor: Colors.blue[200],
-                  nextScreen:  Home_screen(),
+                  nextScreen:  PationtScreen(),
                 ),
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{

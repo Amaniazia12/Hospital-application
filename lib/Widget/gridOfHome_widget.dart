@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hospital_application/Screens/patients_screen.dart';
+import 'package:hospital_application/Screens/Patient/patients_screen.dart';
 
 
 class GridDashboard extends StatelessWidget {
@@ -8,17 +8,10 @@ class GridDashboard extends StatelessWidget {
   void selectCategory(BuildContext context,int action)
   {
     if(action==1)
-    {
-
-   Navigator.of(context).pushNamed(
-     PationtScreen.routName,
-     arguments:  {
+    {  Navigator.of(context).pushNamed(PationtScreen.routName, arguments:{
        //id, doctor 
        //allPatient
-       }
-    
-   );
- 
+       });
     }
     if(action==2) {
       //Navigator.push(context,new MaterialPageRoute(builder: (context) => new SecondScreen()),);
@@ -26,50 +19,57 @@ class GridDashboard extends StatelessWidget {
     if(action==3) {
       //Navigator.push(context,new MaterialPageRoute(builder: (context) => new SecondScreen()),);
     }
-    if(action==4) {}
-    if(action==5) {}
-    if(action==6) {}
+    if(action==4) {
+      //Not implement yet
+    }
+    if(action==5) {
+      //Not implement yet
+    }
+    if(action==6) {
+      //Not implement yet
+    }
   }
   //boxes in screen
   Items item1 = new Items(
       title: "Follow Up",
       subtitle: "Patient, Tesks",
       event: "",
-      //img: "images/calendar.png",
-      action:1);
+      img: "assets/images/todo.png",
+      action:1
+  );
   Items item2 = new Items(
-    title: "Groceries",
-    subtitle: "Bocali, Apple",
-    event: "4 Items",
-    //img: "images/food.png",
+    title: "Voice",
+    subtitle: "Celling robot",
+    event: " ",
+    img: "assets/images/mic.png",
       action:2
   );
   Items item3 = new Items(
     title: "Locations",
-    subtitle: "Lucy Mao going to Office",
+    subtitle: "Robot going to somewhere",
     event: "",
-    //img: "images/map.png",
+    img: "assets/images/map.png",
     action:3
   );
   Items item4 = new Items(
-    title: "Activity",
-    subtitle: "Rose favirited your Post",
+    title: "VideoCell",
+    subtitle: "",
     event: "",
-    //img: "images/festival.png",
+    img: "assets/images/preview.png",
       action:4
   );
   Items item5 = new Items(
-    title: "To do",
-    subtitle: "Homework, Design",
-    event: "4 Items",
-    //img: "images/todo.png",
+    title: "Motion",
+    subtitle: "control Move of robot",
+    event: " ",
+    img: "assets/images/robpngg.png",
       action:5
   );
   Items item6 = new Items(
     title: "Settings",
     subtitle: "",
     event: "2 Items",
-    //img: "images/setting.png",
+    img: "assets/images/setting.png",
       action:6
   );
   @override
@@ -94,7 +94,7 @@ class GridDashboard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                //Image.asset(data.img, width: 42),
+                Image.asset(data.img, width: 42),
                 SizedBox(height: 14),
                 Text(
                   data.title,
@@ -142,8 +142,7 @@ class Items {
   String title;
   String subtitle;
   String event;
-  //String img;
+  String img;
   int action;
-  Items({this.title, this.subtitle, this.event,// this.img
-  this.action});
+  Items({this.title, this.subtitle, this.event, this.img,this.action});
 }

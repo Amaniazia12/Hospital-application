@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Screens/patientProfile_screen.dart';
+import '../Screens/Patient/patientProfile_screen.dart';
 import '../Models/patientClass.dart';
 
 class pationtItem extends StatelessWidget {
@@ -65,7 +65,7 @@ void selectedPation(BuildContext ctx){
                SizedBox(width: 10,),
                Column(
                  children: [
-                   _text("", Colors.white , 18, patient.name),
+                   _text("", Colors.white , 18, "patient Name"),
                    SizedBox(height: 25,),
                    _text("From", Colors.grey[400], 12,patient.nationality),
                    _text("Check in", Colors.grey[400], 12,patient.check_in.toString()),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hospital_application/Screens/reports_Screen.dart';
-import '../Screens/reportImage_screen.dart';
+import 'package:hospital_application/Screens/Patient/reports_Screen.dart';
+import '../Screens/Patient/reportImage_screen.dart';
 class reportItem extends StatelessWidget {
 
    String reportImag ;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_application/Models/patientClass.dart';
 import 'package:hospital_application/Widget/gridOfHome_widget.dart';
-import '../Widget/report_widget.dart';
+import '../../Widget/report_widget.dart';
 class Report_screen extends StatelessWidget {
  
   Patient patient;
