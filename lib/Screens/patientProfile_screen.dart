@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_application/Models/patientClass.dart';
 import 'package:hospital_application/Screens/reports_Screen.dart';
-import '../Models/dummyData.dart';
-import './categoriesOFTasks_Screen.dart';
+//import '../../Models/dummyData.dart';
+import 'package:hospital_application/Screens/Tasks_screen.dart';
 
 class PationtProfile_screen extends StatelessWidget {
   static const routeName = '/pationtProfile';
@@ -13,9 +14,8 @@ class PationtProfile_screen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Text("    " + title + " : ",
-              style: TextStyle(color: Colors.grey[500])),
-          Text("    " + info,
+          Text("  " + title + ": ", style: TextStyle(color: Colors.grey[500])),
+          Text("  " + info,
               style: TextStyle(color: Colors.black54, fontSize: 18)),
           SizedBox(
             height: 50,
@@ -25,26 +25,42 @@ class PationtProfile_screen extends StatelessWidget {
     );
   }
 
-  Widget _btn(String title, Function fun) {
-    return Container(
-      color: Colors.white,
-      width: double.infinity,
-      child: FlatButton(
-        onPressed: fun,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-        color: Colors.blue[200],
-        height: 50,
-        child: Text(
-          title,
-          style: TextStyle(color: Colors.white, fontSize: 20.0),
+  Widget _btn(String title, String fun, BuildContext context, int patientID) {
+    return Column(
+      children: <Widget>[
+        Container(
+          color: Colors.white,
+          width: double.infinity,
+          child: FlatButton(
+            onPressed: () {
+              fun == "task"
+                  ? addTaskFunction(context, patientID)
+                  : _report(context);
+            },
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0)),
+            color: Colors.blue[200],
+            height: 50,
+            child: Text(
+              title,
+              style: TextStyle(color: Colors.white, fontSize: 20.0),
+            ),
+          ),
         ),
-      ),
+        Container(
+            height: 10,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.white,
+            child: SizedBox(
+              height: 10,
+            )),
+      ],
     );
   }
 
-  void _addTaskFunction(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(CategoriesOfTask.routName, arguments: {});
+  void addTaskFunction(BuildContext context, int patient) {
+    Navigator.of(context)
+        .pushNamed(taskScreen.routName, arguments: {"id": patient});
   }
 
   void _report(BuildContext ctx) {
@@ -53,7 +69,8 @@ class PationtProfile_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final patient = ModalRoute.of(context).settings.arguments as Patient;
+    final patient =
+        ModalRoute.of(context).settings.arguments as Map<String, Patient>;
 
     return Scaffold(
         appBar: AppBar(
@@ -85,7 +102,7 @@ class PationtProfile_screen extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 10,
                         backgroundImage: AssetImage(
-                          patient.image,
+                          patient['patient'].image,
                         ),
                       ))),
             ],
@@ -96,7 +113,7 @@ class PationtProfile_screen extends StatelessWidget {
             padding: EdgeInsets.all(10),
             child: Center(
               child: Text(
-                patient.gender,
+                " Patient ",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
@@ -105,29 +122,17 @@ class PationtProfile_screen extends StatelessWidget {
               ),
             ),
           ),
-          _infoCol("Nationality", patient.nationality),
-          _infoCol("Stay_room  ", patient.stay_room.toString()),
-          _infoCol("Check in   ", patient.check_in.toString()),
-          _infoCol("Check out  ", patient.check_out.toString()),
-          _infoCol("Age        ", patient.age.toString()),
-          _infoCol("Mobile     ", patient.mobile.toString()),
-          _infoCol("User       ", patient.user),
-          _btn("Add Task", _addTaskFunction),
-          Container(
-              height: 10,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              child: SizedBox(
-                height: 10,
-              )),
-          _btn("History", () {}),
-          /*  _btn("Reports", Navigator.of(ctx).pushNamed(
-                          Report_screen.routeName,
-                          arguments:  {
-        patient
-                           }
-    
-                           );),*/
+
+          _infoCol("Nationality", patient['patient'].nationality),
+          _infoCol("Stay_room  ", patient['patient'].stay_room.toString()),
+          _infoCol("Check in   ", patient['patient'].check_in.toString()),
+          _infoCol("Check out  ", patient['patient'].check_out.toString()),
+          _infoCol("Age        ", patient['patient'].age.toString()),
+          _infoCol("Mobile     ", patient['patient'].mobile.toString()),
+          _infoCol("User       ", patient['patient'].user.toString()),
+          _btn("Add Task", "task", context, patient['patient'].id),
+          _btn("History", "his", context, patient['patient'].id),
+          _btn("Reports", "rep", context, patient['patient'].id),
         ])));
   }
 }

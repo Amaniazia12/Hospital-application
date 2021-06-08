@@ -9,11 +9,6 @@ import '../API/patient_api.dart';
 class PationtScreen extends StatelessWidget {
   static const routName = '/pationtScreen';
 
-  /*
-                    return  pationtItem(
-                        patient: snapshot.data[index],
-                      );
-                      */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,29 +29,8 @@ class PationtScreen extends StatelessWidget {
                 return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: Container(
-                        height: MediaQuery.of(context).size.width * 0.15,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.blue[50],
-                                  blurRadius: 20.0,
-                                  offset: Offset(0, 10))
-                            ]),
-                        child: GestureDetector(
-                          //width: MediaQuery.of(context).size.width*0.85,
-                          child: Text(
-                            snapshot.data[index].gender,
-                          ),
-                          onTap: () {
-                            // Navigator.pushNamed(context, 'LoginSuccessScreen');
-                          },
-                        ),
-                      ),
+                    return pationtItem(
+                      patient: snapshot.data[index],
                     );
                   },
                 );

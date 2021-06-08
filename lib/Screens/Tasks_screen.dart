@@ -3,16 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/task_api.dart';
 import 'package:hospital_application/API/task_category.dart';
 import 'package:hospital_application/Models/Task_Model.dart';
+import 'package:hospital_application/Models/patientClass.dart';
 import 'package:hospital_application/Models/task_categoryClass.dart';
-import 'package:hospital_application/Widget/get_category.dart';
-import 'package:hospital_application/Widget/get_task.dart';
 import 'package:hospital_application/Widget/task_widget.dart';
 import 'package:hospital_application/blocs/auth_state.dart';
 import '../API/task_api.dart';
 
 class taskScreen extends StatefulWidget {
   const taskScreen({Key key}) : super(key: key);
-  static String routName = 'taskScreen';
+  static String routName = '/taskScreen';
   @override
   _taskScreenState createState() => _taskScreenState();
 }
@@ -29,7 +28,7 @@ class _taskScreenState extends State<taskScreen> {
     super.initState();
   }
 
-  List<bool> listview = [false, false, false, false, false, false, false];
+  //List<bool> listview = [false, false, false, false, false, false, false];
   List<Task> getTaskCat(int CategoryId) {
     List<Task> taskWithCategory = new List();
     for (var t in task_all) {
@@ -42,6 +41,9 @@ class _taskScreenState extends State<taskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final patientID =
+        ModalRoute.of(context).settings.arguments as Map<String, int>;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Tasks"),
@@ -61,29 +63,31 @@ class _taskScreenState extends State<taskScreen> {
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: GestureDetector(
-                            child: Text(
-                              snapshot.data[index].name,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            onTap: () {
-                              setState(() {
-                                listview[index] = true;
-                              });
-                            },
+                          //child: GestureDetector(
+                          child: Text(
+                            snapshot.data[index].name,
+                            style: TextStyle(
+                                //te :start,
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
+                          // onTap: () {
+                          // setState(() {
+                          // listview[index] = true;
+                          //});
+                          // },
                         ),
+                        // ),
                         Container(
-                            child: listview[index] == true
-                                ? task_widget(
-                                    task: getTaskCat(snapshot.data[index].id))
-                                : Text(""))
+                            child: task_widget(
+                                taskcat: snapshot.data[index],
+                                patientid: patientID["id"],
+                                task: getTaskCat(snapshot.data[index].id)))
                       ],
                     );
                   });

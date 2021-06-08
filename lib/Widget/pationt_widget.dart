@@ -6,10 +6,7 @@ class pationtItem extends StatelessWidget {
   Patient patient;
   pationtItem({this.patient});
 
-  void selectedPation(BuildContext ctx) {
-    Navigator.of(ctx)
-        .pushNamed(PationtProfile_screen.routeName, arguments: {patient});
-  }
+  
 
   Widget _text(String title, Color color, double fontSize, String value) {
     return Text(
@@ -27,7 +24,10 @@ class pationtItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: InkWell(
-        onTap: () => selectedPation(context),
+        onTap: () {
+          Navigator.of(context).pushNamed(PationtProfile_screen.routeName,
+              arguments: {"patient": patient});
+        },
         child: Container(
           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
           decoration: BoxDecoration(
@@ -65,15 +65,14 @@ class pationtItem extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        _text("", Colors.white, 18, patient.nationality),
+                        _text(" Name ", Colors.white, 18, "tasneem safour "),
                         SizedBox(
                           height: 25,
                         ),
-                        _text(
-                            "From", Colors.grey[400], 12, patient.nationality),
-                        _text("Check in", Colors.grey[400], 12,
+                        _text("From", Colors.black, 12, patient.nationality),
+                        _text("Check in", Colors.black, 12,
                             patient.check_in.toString()),
-                        _text("Check out ", Colors.grey[400], 12,
+                        _text("Check out ", Colors.black, 12,
                             patient.check_out.toString()),
                         SizedBox(
                           height: 2,
