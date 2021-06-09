@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_application/Models/Task_Model.dart';
+import 'package:hospital_application/Models/task_categoryClass.dart';
 import '../Screens/patientProfile_screen.dart';
 import '../Models/patientClass.dart';
 
 class pationtItem extends StatelessWidget {
   Patient patient;
-  pationtItem({this.patient});
+  List<Task> task_all;
+  List<task_category> taskCategory_all;
 
-  
+  pationtItem({this.patient, this.taskCategory_all, this.task_all});
 
   Widget _text(String title, Color color, double fontSize, String value) {
     return Text(
@@ -26,7 +29,11 @@ class pationtItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context).pushNamed(PationtProfile_screen.routeName,
-              arguments: {"patient": patient});
+              arguments: {
+                "patient": patient,
+                "task": task_all,
+                "category": taskCategory_all
+              });
         },
         child: Container(
           padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
@@ -35,7 +42,7 @@ class pationtItem extends StatelessWidget {
               bottomLeft: Radius.circular(100.0),
               topLeft: Radius.circular(100.0),
             ),
-            color: Theme.of(context).primaryColor,
+            color: Colors.blue[200],
           ),
           child: Card(
             elevation: 50,

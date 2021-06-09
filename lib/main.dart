@@ -5,6 +5,7 @@ import 'package:hospital_application/API/login_api.dart';
 import 'package:hospital_application/Screens/LoginSuccessScreen.dart';
 import 'package:hospital_application/Screens/Slider_screen.dart';
 import 'package:hospital_application/Screens/Tasks_screen.dart';
+import 'package:hospital_application/Screens/charging_screen.dart';
 import 'package:hospital_application/Screens/foodScreen.dart';
 import 'package:hospital_application/Screens/taskParameter.dart';
 import './Screens/home-screen.dart';
@@ -44,7 +45,7 @@ class _MyAppState extends State<MyApp> {
             home: AnimatedSplashScreen(
               splash: ('assets/images/robpng.png'),
               backgroundColor: Colors.blue[200],
-              nextScreen: PationtScreen(),
+              nextScreen: slider(),
             ),
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{
@@ -56,6 +57,7 @@ class _MyAppState extends State<MyApp> {
               PationtProfile_screen.routeName: (ctx) => PationtProfile_screen(),
               taskParameter.routName: (ctx) => taskParameter(),
               foodScreen.routName: (ctx) => foodScreen(),
+              chargingScreen.routName: (ctx) => chargingScreen(),
               Home_screen.routName: (ctx) => Home_screen(),
             }));
   }

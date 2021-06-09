@@ -25,7 +25,8 @@ class PationtProfile_screen extends StatelessWidget {
     );
   }
 
-  Widget _btn(String title, String fun, BuildContext context, int patientID) {
+  Widget _btn(String title, String fun, BuildContext context,
+      Map<String, dynamic> patientID) {
     return Column(
       children: <Widget>[
         Container(
@@ -58,9 +59,12 @@ class PationtProfile_screen extends StatelessWidget {
     );
   }
 
-  void addTaskFunction(BuildContext context, int patient) {
-    Navigator.of(context)
-        .pushNamed(taskScreen.routName, arguments: {"id": patient});
+  void addTaskFunction(BuildContext context, Map<String, dynamic> patient) {
+    Navigator.of(context).pushNamed(taskScreen.routName, arguments: {
+      "id": patient["patient"].id,
+      "task": patient["task"],
+      "category": patient["category"]
+    });
   }
 
   void _report(BuildContext ctx) {
@@ -70,7 +74,7 @@ class PationtProfile_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final patient =
-        ModalRoute.of(context).settings.arguments as Map<String, Patient>;
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
 
     return Scaffold(
         appBar: AppBar(
@@ -130,9 +134,9 @@ class PationtProfile_screen extends StatelessWidget {
           _infoCol("Age        ", patient['patient'].age.toString()),
           _infoCol("Mobile     ", patient['patient'].mobile.toString()),
           _infoCol("User       ", patient['patient'].user.toString()),
-          _btn("Add Task", "task", context, patient['patient'].id),
-          _btn("History", "his", context, patient['patient'].id),
-          _btn("Reports", "rep", context, patient['patient'].id),
+          _btn("Add Task", "task", context, patient),
+          _btn("History", "his", context, patient),
+          _btn("Reports", "rep", context, patient),
         ])));
   }
 }

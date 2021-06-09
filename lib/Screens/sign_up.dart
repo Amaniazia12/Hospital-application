@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/login_api.dart';
+import 'package:hospital_application/Screens/home-screen.dart';
 import 'package:hospital_application/Widget/Animation.dart';
 import 'package:hospital_application/Widget/gradient_Button.dart';
 import 'package:hospital_application/blocs/auth_bloc.dart';
@@ -22,7 +23,6 @@ class _sign_upState extends State<sign_up> {
   TextEditingController usernameControll = TextEditingController();
   TextEditingController passcontroll = TextEditingController();
 
-  // ui conect with block only
   AuthBloc authbloc;
   @override
   void initState() {
@@ -33,11 +33,14 @@ class _sign_upState extends State<sign_up> {
   final msgError = BlocBuilder<AuthBloc, AuthState>(
     builder: (context, state) {
       if (state is LoginErrorState) {
-        return Container(
-          height: 50,
-          child: Text(
-            state.msg,
-            style: TextStyle(color: Colors.red),
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 50,
+            child: Text(
+              state.msg,
+              style: TextStyle(color: Colors.red),
+            ),
           ),
         );
       } else if (state is loginLodingState) {
@@ -57,18 +60,20 @@ class _sign_upState extends State<sign_up> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: BlocListener<AuthBloc, AuthState>(
-          listener: (context, state) {
-            if (state is DoctorLoginSuccState) {
-              return Navigator.pushNamed(context, 'taskScreen');
-            } else if (state is NurseLoginSuccState) {
-              return null;
-            }
-          },
-          child: SingleChildScrollView(
-            //scrollDirection: Axis.horizontal,
-            child :Container(
+      backgroundColor: Colors.white,
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is DoctorLoginSuccState) {
+            return Navigator.of(context).pushNamed(
+              Home_screen.routName,
+            );
+          } else if (state is NurseLoginSuccState) {
+            return null;
+          }
+        },
+        child: SingleChildScrollView(
+          //scrollDirection: Axis.horizontal,
+          child: Container(
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -87,7 +92,7 @@ class _sign_upState extends State<sign_up> {
                             margin: EdgeInsets.only(top: 50),
                             child: Center(
                               child: Text(
-                                "Login",
+                                "Log in",
                                 style: TextStyle(
                                     color: Colors.blue[200],
                                     fontSize: 40,
@@ -151,6 +156,9 @@ class _sign_upState extends State<sign_up> {
                       1.5,
                       msgError,
                     ),
+                    SizedBox(
+                      height: 80,
+                    ),
                     FadeAnimation(
                         1.8,
                         Padding(
@@ -169,19 +177,21 @@ class _sign_upState extends State<sign_up> {
                     SizedBox(
                       height: 70,
                     ),
+                    /*
                     FadeAnimation(
                         2,
                         Text(
                           "Forgot Password?",
                           style: TextStyle(color: Colors.blue[200]),
                         )),
+                        */
                   ],
                 ),
               ],
             ),
-            ),
           ),
         ),
+      ),
     );
   }
 }

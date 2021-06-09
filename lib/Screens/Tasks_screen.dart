@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/task_api.dart';
 import 'package:hospital_application/API/task_category.dart';
 import 'package:hospital_application/Models/Task_Model.dart';
+import 'package:hospital_application/Models/mission.dart';
 import 'package:hospital_application/Models/patientClass.dart';
 import 'package:hospital_application/Models/task_categoryClass.dart';
+import 'package:hospital_application/Widget/gradient_Button.dart';
 import 'package:hospital_application/Widget/task_widget.dart';
 import 'package:hospital_application/blocs/auth_state.dart';
 import '../API/task_api.dart';
@@ -42,7 +44,7 @@ class _taskScreenState extends State<taskScreen> {
   @override
   Widget build(BuildContext context) {
     final patientID =
-        ModalRoute.of(context).settings.arguments as Map<String, int>;
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
 
     return Scaffold(
       appBar: AppBar(

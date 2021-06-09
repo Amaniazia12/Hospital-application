@@ -11,6 +11,8 @@ class PationtScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final parameter =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
     return Scaffold(
       appBar: AppBar(
         title: Text("Patients"),
@@ -31,6 +33,8 @@ class PationtScreen extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return pationtItem(
                       patient: snapshot.data[index],
+                      task_all: parameter["task"],
+                      taskCategory_all: parameter["category"],
                     );
                   },
                 );

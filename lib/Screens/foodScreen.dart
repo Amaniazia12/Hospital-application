@@ -76,7 +76,7 @@ class _foodScreenState extends State<foodScreen> {
             //Text(valueChoose)
             SizedBox(height: 110),
             Padding(
-              padding: const EdgeInsets.only(left: 50, right: 50),
+              padding: const EdgeInsets.only(left: 40, right: 40),
               child: GestureDetector(
                   //width: MediaQuery.of(context).size.width*0.85,
                   child: gradient_button("Send Task"),
