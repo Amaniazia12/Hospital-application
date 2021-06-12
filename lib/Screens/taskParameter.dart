@@ -85,6 +85,7 @@ class _taskParameterState extends State<taskParameter> {
                     "id_medicine": valueChoose
                   };
                   Mission.addMission("medicine recognition", m);
+                  Navigator.of(context).pop(context);
                 } else {
                   Map<String, String> m = {
                     "service_type": "ask_patient",

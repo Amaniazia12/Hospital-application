@@ -28,6 +28,7 @@ class pationtItem extends StatelessWidget {
       padding: const EdgeInsets.all(2.0),
       child: InkWell(
         onTap: () {
+          print(patient.id.toString() + "//" + task_all.length.toString());
           Navigator.of(context).pushNamed(PationtProfile_screen.routeName,
               arguments: {
                 "patient": patient,
