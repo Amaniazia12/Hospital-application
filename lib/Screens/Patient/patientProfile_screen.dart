@@ -14,8 +14,8 @@ class PationtProfile_screen extends StatelessWidget {
       child: Row(
        mainAxisAlignment: MainAxisAlignment.start,
        children: <Widget> [
-       Text( "    " + title + " : " , style: TextStyle (color: Colors.grey[500])),
-       Text( "    " + info , style: TextStyle ( color: Colors.black54,fontSize: 18 )),
+       Text( "  " + title + ": " , style: TextStyle (color: Colors.grey[500])),
+       Text( "  " + info , style: TextStyle ( color: Colors.black54,fontSize: 18 )),
        SizedBox(height: 50,)
       ],),
     );
@@ -47,14 +47,14 @@ class PationtProfile_screen extends StatelessWidget {
      CategoriesOfTask.routName,
    );
  }
- 
+
  void _report (BuildContext ctx ){
    Navigator.of(ctx).pushNamed(
      Report_screen.routeName,
      arguments:  {
         
        }
-    
+  
    );
  }
  
@@ -63,8 +63,8 @@ class PationtProfile_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final patient = ModalRoute.of(context).settings.arguments as Patient ;
-   
+    final patient = ModalRoute.of(context).settings.arguments as Map <String , Patient> ;
+    
     return Scaffold(
       appBar: AppBar(title:Text("Patient Profile ",style: TextStyle (color: Colors.white))),
       backgroundColor: Theme.of(context).primaryColor,
@@ -85,7 +85,7 @@ class PationtProfile_screen extends StatelessWidget {
                 width:MediaQuery.of(context).size.height*0.25,
                 child: CircleAvatar(
                   radius: 10,
-                  backgroundImage: AssetImage(patient.image ,), ))), 
+                  backgroundImage: AssetImage(patient['patient'].image,), ))), 
             ],
           ),
           Container(
@@ -93,23 +93,25 @@ class PationtProfile_screen extends StatelessWidget {
             width: MediaQuery.of(context).size.width ,
             padding: EdgeInsets.all(10),
             child: Center(
-              child: Text("Patient " , style: TextStyle(
+              child: Text(" Patient " , style: TextStyle(
                        fontSize: 24 ,
                        fontWeight: FontWeight.w500,
                        color: Colors.black87,
                      ),),
             ),
           ),
-           _infoCol("Nationality", patient.nationality),
-           _infoCol("Stay_room  ", patient.stay_room.toString()),
-           _infoCol("Check in   ", patient.check_in.toString()),
-           _infoCol("Check out  ", patient.check_out.toString()),
-           _infoCol("Age        ", patient.age.toString()),
-           _infoCol("Mobile     ", patient.mobile.toString()),
-           _infoCol("User       ", patient.user.toString()),
+          
+           _infoCol("Nationality", patient['patient'].nationality),
+           _infoCol("Stay_room  ", patient['patient'].stay_room.toString()),
+           _infoCol("Check in   ", patient['patient'].check_in.toString()),
+           _infoCol("Check out  ", patient['patient'].check_out.toString()),
+           _infoCol("Age        ", patient['patient'].age.toString()),
+           _infoCol("Mobile     ", patient['patient'].mobile.toString()),
+           _infoCol("User       ", patient['patient'].user.toString()),
            _btn("Add Task", _addTaskFunction , context),
-           _btn("History", (){} , context),
+           /*_btn("History", (){} , context),
            _btn("Reports", (){} , context),
+           */
           ]
         )
       )

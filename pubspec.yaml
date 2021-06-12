@@ -36,6 +36,9 @@ dependencies:
   equatable:
   google_fonts: ^2.1.0
   control_pad: ^1.1.1+1
+  joystick: ^1.1.0 
+  web_socket_channel: ^2.1.0
+  dart_amqp: ^0.1.5
 
 dev_dependencies:
   flutter_test:

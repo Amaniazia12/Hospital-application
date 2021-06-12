@@ -4,7 +4,7 @@ import '../Models/patientClass.dart';
 
 class pationtItem extends StatelessWidget {
 
-  Patient patient ;
+   Patient patient ;
    pationtItem({
    this.patient
   });
@@ -12,7 +12,10 @@ void selectedPation(BuildContext ctx){
    Navigator.of(ctx).pushNamed(
      PationtProfile_screen.routeName ,
      arguments:{
-       patient
+       'patient':patient,
+       /*"id": patient.id.toString(),
+       "image" :patient.image,
+       "nationality" :patient.nationality,*/
        }
    );
  }

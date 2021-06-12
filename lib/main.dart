@@ -28,7 +28,12 @@ class _MyAppState extends State<MyApp> {
     
     super.initState();
   }
+   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
+    
+  }
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -45,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                 home:AnimatedSplashScreen(
                   splash: ('assets/images/robpng.png'),
                   backgroundColor: Colors.blue[200],
-                  nextScreen:  PationtScreen(),
+                  nextScreen:  Joystick_screen(),
                 ),
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{

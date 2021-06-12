@@ -79,7 +79,6 @@ class _sliderState extends State<slider> {
           padding: EdgeInsets.all(30.0),
           width: double.infinity,
           child: GestureDetector(
-
             child: gradient_button(CurrentIndex == slides.length - 1 ? "GET START": "SKIP"),
             onTap:(){_nextScreen(context);},
           ),
