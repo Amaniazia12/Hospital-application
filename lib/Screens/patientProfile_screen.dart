@@ -60,6 +60,9 @@ class PationtProfile_screen extends StatelessWidget {
   }
 
   void addTaskFunction(BuildContext context, Map<String, dynamic> patient) {
+    // print(patient["patient"].id.toString() +
+    //   "//" +
+    //patient["category"].length.toString());
     Navigator.of(context).pushNamed(taskScreen.routName, arguments: {
       "id": patient["patient"].id,
       "task": patient["task"],
@@ -78,9 +81,11 @@ class PationtProfile_screen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-            title: Text("Patient Profile ",
-                style: TextStyle(color: Colors.white))),
-        backgroundColor: Theme.of(context).primaryColor,
+          title: Text("Patient Profil"),
+          centerTitle: true,
+          backgroundColor: Colors.blue[200],
+        ),
+        backgroundColor: Colors.blue[200],
         body: SingleChildScrollView(
             child: Column(children: <Widget>[
           //SizedBox(height: MediaQuery.of(context).size.height*0.05),

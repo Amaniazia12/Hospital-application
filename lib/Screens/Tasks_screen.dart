@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/task_api.dart';
@@ -19,6 +20,7 @@ class taskScreen extends StatefulWidget {
 }
 
 List<task_category> taskCategory_all = new List();
+List<Mission> missionList = new List();
 List<Task> task_all = new List();
 
 class _taskScreenState extends State<taskScreen> {
@@ -26,6 +28,9 @@ class _taskScreenState extends State<taskScreen> {
   initState() {
     getTask().then((result) {
       setState(() => task_all = result);
+    });
+    getTaskCategory().then((result) {
+      setState(() => taskCategory_all = result);
     });
     super.initState();
   }
@@ -39,6 +44,40 @@ class _taskScreenState extends State<taskScreen> {
       }
     }
     return taskWithCategory;
+  }
+
+  Widget columncat(task_category taskCategory_all) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          //child: GestureDetector(
+          child: Text(
+            taskCategory_all.name,
+            style: TextStyle(
+                //te :start,
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+            child: task_widget(
+                taskcat: taskCategory_all,
+                patientid: 1,
+                task: getTaskCat(taskCategory_all.id))),
+      ],
+    );
+  }
+
+  listTasksCheck() {
+    setState(() {
+      missionList = Mission.mission.cast<Mission>();
+      return Column(
+          children:
+              taskCategory_all.map((category) => columncat(category)).toList());
+    });
   }
 
   @override
@@ -61,38 +100,28 @@ class _taskScreenState extends State<taskScreen> {
                 child: CircularProgressIndicator(),
               );
             } else {
-              return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          //child: GestureDetector(
-                          child: Text(
-                            snapshot.data[index].name,
-                            style: TextStyle(
-                                //te :start,
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          // onTap: () {
-                          // setState(() {
-                          // listview[index] = true;
-                          //});
-                          // },
-                        ),
-                        // ),
-                        Container(
-                            child: task_widget(
-                                taskcat: snapshot.data[index],
-                                patientid: patientID["id"],
-                                task: getTaskCat(snapshot.data[index].id)))
-                      ],
-                    );
-                  });
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    listTasksCheck(),
+                    Column(
+                        children: taskCategory_all
+                            .map((category) => columncat(category))
+                            .toList()),
+                    Container(
+                      height: 50,
+                      child: GestureDetector(
+                          //width: MediaQuery.of(context).size.width*0.85,
+                          child: gradient_button("Send Task"),
+                          onTap: () {
+                            Mission.submitTask(
+                                context, task_all, taskCategory_all);
+                            //Navigator.of(context).pop(context);
+                          }),
+                    ),
+                  ],
+                ),
+              );
             }
           },
         ),

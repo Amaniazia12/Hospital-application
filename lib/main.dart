@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/login_api.dart';
 import 'package:hospital_application/Screens/LoginSuccessScreen.dart';
+import 'package:hospital_application/Screens/RecordScreen.dart';
 import 'package:hospital_application/Screens/Slider_screen.dart';
 import 'package:hospital_application/Screens/Tasks_screen.dart';
 import 'package:hospital_application/Screens/charging_screen.dart';
@@ -15,21 +17,23 @@ import 'package:hospital_application/blocs/auth_state.dart';
 import 'Screens/patientProfile_screen.dart';
 import 'Screens/patients_screen.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+  DeviceOrientation.portraitUp,
+  DeviceOrientation.portraitDown,
+  ]);
   runApp(MyApp());
 }
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
-
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -45,7 +49,7 @@ class _MyAppState extends State<MyApp> {
             home: AnimatedSplashScreen(
               splash: ('assets/images/robpng.png'),
               backgroundColor: Colors.blue[200],
-              nextScreen: slider(),
+              nextScreen: Home_screen(),
             ),
             debugShowCheckedModeBanner: false,
             routes: <String, WidgetBuilder>{
@@ -59,6 +63,7 @@ class _MyAppState extends State<MyApp> {
               foodScreen.routName: (ctx) => foodScreen(),
               chargingScreen.routName: (ctx) => chargingScreen(),
               Home_screen.routName: (ctx) => Home_screen(),
+              HomePage.routeName:(ctx) =>HomePage(),
             }));
   }
 }
