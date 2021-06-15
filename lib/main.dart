@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/login_api.dart';
+import 'package:hospital_application/Screens/Controls/movementAction.dart';
+import 'package:hospital_application/Screens/Controls/movementConfiguration_screen.dart';
+import 'package:hospital_application/Screens/Controls/setting_screen.dart';
+import './Screens/Controls/paint.dart';
 import 'package:hospital_application/Screens/Controls/Joystick_screen.dart';
 import 'package:hospital_application/Screens/LoginSuccessScreen.dart';
 import 'package:hospital_application/Screens/Slider_screen.dart';
@@ -12,7 +16,7 @@ import 'package:hospital_application/blocs/auth_bloc.dart';
 import 'package:hospital_application/blocs/auth_state.dart';
 import 'Screens/Patient/patientProfile_screen.dart';
 import 'Screens/Patient/patients_screen.dart';
-
+import './Screens/Controls/controlSliders_widgit.dart';
 void main() {
   runApp(MyApp());
 }
@@ -61,6 +65,10 @@ class _MyAppState extends State<MyApp> {
               PationtScreen.routName:(ctx)=>PationtScreen(),
               PationtProfile_screen.routeName:(ctx)=>PationtProfile_screen(),
               Home_screen.routName:(ctx) => Home_screen(),
+              Joystick_screen.routeName:(ctx)=>Joystick_screen(),
+              Setting_Screen.routeName:(ctx)=>Setting_Screen(),
+              MovementConfigration_screen.routName:(ctx)=>MovementConfigration_screen(),
+              MovementAction.routName:(ctx)=>MovementAction(),
             }));
   }
 }

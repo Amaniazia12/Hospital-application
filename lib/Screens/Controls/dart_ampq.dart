@@ -33,7 +33,7 @@ void main(String eventStr ) async {
   // You can provide a settings object to override the
   // default connection settings
   ConnectionSettings settings = ConnectionSettings(
-    host: "172.16.46.182:5672",
+    host: "192.168.137.117:8000",
     // authProvider: PlainAuthenticator("user", "pass")
   );
   Client client = Client(settings: settings);
@@ -43,5 +43,4 @@ void main(String eventStr ) async {
   // We dont care about the routing key as our exchange type is FANOUT
   exchange.publish( event,routingKey);
   client.close();
-  
 }

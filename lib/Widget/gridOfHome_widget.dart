@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hospital_application/Screens/Controls/Joystick_screen.dart';
+import 'package:hospital_application/Screens/Controls/setting_screen.dart';
 import 'package:hospital_application/Screens/Patient/patients_screen.dart';
 
 
@@ -26,7 +28,7 @@ class GridDashboard extends StatelessWidget {
       //Not implement yet
     }
     if(action==6) {
-      //Not implement yet
+      Navigator.of(context).pushNamed(Setting_Screen.routeName);
     }
   }
   //boxes in screen

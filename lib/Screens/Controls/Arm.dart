@@ -45,7 +45,7 @@ class Arm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text ("saaaaaaaaaaaaaaaaaaaaaaaa"),
+        Text ("s"),
         CustomPaint(
          painter: ArmPainter(anchor),),
         

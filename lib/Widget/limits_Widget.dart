@@ -1,4 +1,4 @@
-/***
+
 import 'package:flutter/material.dart';
 class LimitsWidget extends StatefulWidget {
 
@@ -8,9 +8,9 @@ class LimitsWidget extends StatefulWidget {
 }
 
 class _LimitsWidgetState extends State<LimitsWidget> {
-  static final minList=[];
+   final minList=[];
 
-  static final maxList=[];
+   final maxList=[];
 
   final minValControl = TextEditingController();
 
@@ -24,7 +24,6 @@ class _LimitsWidgetState extends State<LimitsWidget> {
     }
     minList.add(minval);
     maxList.add(maxval);
-   //Navigator.of(context).pop();
   }
 
   @override
@@ -77,4 +76,4 @@ class _LimitsWidgetState extends State<LimitsWidget> {
     ) ;
   }
 }
-    **/
+  
