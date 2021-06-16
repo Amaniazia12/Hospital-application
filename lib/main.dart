@@ -3,7 +3,6 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_application/API/login_api.dart';
 import 'package:hospital_application/Screens/Controls/movementAction.dart';
-import 'package:hospital_application/Screens/Controls/movementConfiguration_screen.dart';
 import 'package:hospital_application/Screens/Controls/setting_screen.dart';
 import './Screens/Controls/paint.dart';
 import 'package:hospital_application/Screens/Controls/Joystick_screen.dart';
@@ -67,7 +66,6 @@ class _MyAppState extends State<MyApp> {
               Home_screen.routName:(ctx) => Home_screen(),
               Joystick_screen.routeName:(ctx)=>Joystick_screen(),
               Setting_Screen.routeName:(ctx)=>Setting_Screen(),
-              MovementConfigration_screen.routName:(ctx)=>MovementConfigration_screen(),
               MovementAction.routName:(ctx)=>MovementAction(),
             }));
   }
